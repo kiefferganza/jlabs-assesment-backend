@@ -33,4 +33,12 @@ class AuthController extends BaseController
             return $this->sendError('Invalid email or password.', ['error' => 'Unauthorized']);
         }
     }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        $user->update($request->all());
+
+        return $this->sendResponse($user, 'User profile updated successfully.');
+    }
 }
